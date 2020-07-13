@@ -2,14 +2,21 @@ from telethon import TelegramClient, events, sync
 from telethon.sync import TelegramClient
 from telethon import functions, types
 from telethon.tl.functions.messages import ImportChatInviteRequest
+import configparser
+import json
 
-api_id = 'api_id' #ваш апи ид
-api_hash = 'api_hash' #ваш апи хеш
+# Считываем учетные данные
+config = configparser.ConfigParser()
+config.read("config.ini")
+
+# Присваиваем значения внутренним переменным
+api_id   = config['Telegram']['api_id']
+api_hash = config['Telegram']['api_hash']
 
 class App():
 	def __init__(self):
 		value_accounts = input("Сколько аккаунтов будем использовать?")
-		value_check = str('y') #input("Вы уверены? Y-да, n-нет: ")
+		value_check = input("Вы уверены? Y-да, n-нет: ")
 
 		if not value_accounts.isdigit():
 			print("Упс... Количество аккаунтов должно быть указано цифрой(цифрами) и быть больше 0.\nПопробуй еще раз.\n\n\n")
@@ -22,7 +29,7 @@ class App():
 			return
 	def loadusers(self, _range):
 		for i in range(int(_range)):
-		#	print('Авторизация в аккаунте №{0}'.format(str(i+1)))
+			print('Авторизация в аккаунте №{0}'.format(str(i+1)))
 			with TelegramClient('account'+str(i+1), api_id, api_hash) as client:
 				pass
 		self.loadto_parseds()
