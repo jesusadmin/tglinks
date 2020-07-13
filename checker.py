@@ -3,8 +3,8 @@ from telethon.sync import TelegramClient
 from telethon import functions, types
 from telethon.tl.functions.messages import ImportChatInviteRequest
 
-api_id = '1273775' 
-api_hash = '057996878b609893a9bdd7fdba79e0ae' 
+api_id = 'api_id' #ваш апи ид
+api_hash = 'api_hash' #ваш апи хеш
 
 class App():
 	def __init__(self):
